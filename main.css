@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:700');
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond');
+
+
+html{
+  background-color: #eee;
+}
+
+body{
+  margin: 0;
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  color: #111;
+  background-color: #eee;
+}
+
+h1, h2, h3{
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1{
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 3em;
+  text-align: center;
+  color: #333;
+  padding: 0em;
+  margin-bottom: 2em;
+
+}
+
+h3{
+  text-transform: uppercase;
+  font-weight: 900;
+  padding-top: 1.5em;
+}
+
+h4{
+  font-weight: 900;
+}
+
+.list{
+  padding: 3em 8em;
+  animation: fadein 2s;
+  position: relative;
+  z-index: 0;
+}
+
+
+a, a:visited {
+  color: #000;
+  text-decoration: none;
+  line-height: 1.6em;
+}
+
+a:hover {
+  color: blue;
+}
+
+.bio{
+  padding: 1.8em 0em 3em 2em;
+  float: right;
+  text-align: justify;
+  width: 30vw;
+  z-index: 99999;
+  position: relative;
+}
+
+.bioTitle{
+  display: none;
+}
+
+.contact{
+  text-align: center;
+  margin-bottom: 3em;
+}
+.contact h3{
+  font-size: 1.8em;
+}
+
+.contact a{
+  text-decoration: underline;
+}
+
+.fab, .fas{
+  vertical-align: middle;
+  background-color: #333;
+  border-radius: 50%;
+  padding: 0.7em;
+  margin: 0.8em;
+}
+
+a > .fab, a > .fas{
+  color: #eee;
+  font-size: 1.2em;
+}
+
+.fab:hover, .fas:hover{
+  background-color: blue;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media only screen and (max-device-width: 480px) {
+
+        h1{
+          margin-right: -0.7em;
+          padding-bottom: 0.4em;
+        }
+        h1.name{
+          text-align: center;
+          margin: 2em 0 0 0;
+          padding: 0;
+          font-size: 2em;
+        }
+        .list{
+          padding: 0em 3em;
+        }
+        .bio{
+          padding: 1em 0;
+          float: none;
+          text-align: left;
+          width: 100%;
+          margin: 0 auto;
+        }
+
+        .bioTitle{
+          display: block;
+        }
+    }

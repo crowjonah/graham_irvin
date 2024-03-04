@@ -1,0 +1,82 @@
+/*
+background color sets the colour of the page itself.
+
+color sets the colour of the text on the page.
+ */
+
+html, body{
+  background-color: #eeeeee;
+  color: #111111;
+}
+
+/*
+h1 is the bold "Your Name" at the top of the page.
+ */
+
+h1{
+color: #111111;
+}
+
+/*
+h3 is used for the subheadings, like "full-length"
+ */
+
+h3{
+  color: #111111;
+}
+
+/*
+h4 is used for the dates in this template
+ */
+
+h4{
+  color: #111111;
+}
+
+/*
+This sets the colour of the links on your page
+ */
+
+a, a:visited {
+  color: #000000;
+}
+
+/*
+This sets the colour of the link when you hover over it
+ */
+
+a:hover {
+  color: blue;
+}
+
+/*
+This sets the colour of the circle around each of the contact icons
+ */
+
+.fab, .fas{
+  background-color: #333333;
+}
+
+/*
+This sets the colour of icon itself
+ */
+
+a > .fab, a > .fas{
+  color: #eeeeee;
+}
+
+/*
+This sets the colour of the circle around the icon when you hover over it
+ */
+
+.fab:hover, .fas:hover{
+  background-color: blue;
+}
+
+/*
+This sets the colour of icon itself when you hover over it
+ */
+
+a > .fab:hover, a > .fas:hover{
+  color: #eeeeee;
+}
