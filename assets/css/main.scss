@@ -11,10 +11,22 @@ $max-content-width: {{ site.max_width }};
   "themes",
   "layout",
   "base",
-  "distill",
-  "cv",
   "font-awesome/fontawesome",
   "font-awesome/brands",
   "font-awesome/solid",
   "font-awesome/regular"
 ;
+
+.social {
+	.contact-icons {
+		font-size: 1rem;
+	}
+}
+
+.fab, .fas {
+	vertical-align: middle;
+	background-color: #bfbfbf;
+	border-radius: 50%;
+	padding: 0.7em;
+	margin: 0.8em;
+}
