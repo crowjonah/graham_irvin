@@ -10,6 +10,8 @@ nav_order: 6
 ### PROSE
 
 - [Feb 21](https://www.ayearinphilly.com/entries/graham) [A Year in Philly]
+- [Mary The Asian Elephant, Dead at 59](https://www.havehashad.com/hadposts/mary-the-asian-elephant-dead-at-59) [HAD]
+- [Skateland USA](https://joylandmagazine.com/fiction/skateland-usa/) [Joyland]
 - [Not Going Home](https://backpatio.press/2019/07/10/not-going-home-by-graham-irvin/) [Back Patio Press]
 - [Time passes faster at sea](http://x-r-a-y.com/time-passes-faster-at-sea-by-graham-irvin/fiction/) [X-R-A-Y]
 
