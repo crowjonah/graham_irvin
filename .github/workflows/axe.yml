@@ -43,7 +43,7 @@ jobs:
             }
       - name: Install and Build 🔧
         run: |
-          pip3 install --upgrade jupyter
+          pip3 install
           export JEKYLL_ENV=production
           bundle exec jekyll build --lsi
       - name: Purge unused CSS 🧹
