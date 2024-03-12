@@ -204,6 +204,10 @@
     {% capture link %}https://facebook.com/{{ site.facebook_id }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
   {% endif %}
+  {% if site.goodreads_id %}
+    {% capture link %}https://goodreads.com/{{ site.goodreads_id }}{% endcapture %}
+    {% assign sameaslinks = sameaslinks | push: link %}
+  {% endif %}
   {% if site.youtube_id %}
     {% capture link %}https://youtube.com/@{{ site.youtube_id }}{% endcapture %}
     {% assign sameaslinks = sameaslinks | push: link %}
