@@ -6,14 +6,14 @@ nav: true
 nav_order: 2
 ---
 
-{% include figure.liquid loading="eager" path="assets/img/ihaveagun.jpg" class="w-50 pr-3 pb-3 float-left" %}
+{% include figure.liquid loading="eager" path="assets/img/ihaveagun.jpg" class="w-50 pl-3 pb-3 float-right" %}
 There’s a gun inside the soul of every living thing.
 
 Made of anger.
 
 Made of shame.
 
-<p class="lead align-right">“This book is gas.”<br />—Sean Thor Conroe, author of <em>Fuccboi</em></p>
+<p class="lead">“This book is gas.”<br />—Sean Thor Conroe, author of <em>Fuccboi</em></p>
 
 Available from [Rejection Letters](https://rejectionletters.bigcartel.com/product/i-have-a-gun-by-graham-irvin) and [Amazon](https://www.amazon.com/I-Have-Gun-Graham-Irvin/dp/B0CW89GD6F/).
 

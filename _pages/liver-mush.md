@@ -6,10 +6,10 @@ nav: true
 nav_order: 3
 ---
 
-{% include figure.liquid loading="eager" path="assets/img/livermush.jpg" class="w-50 pr-3 pb-3 float-left" %}
+{% include figure.liquid loading="eager" path="assets/img/livermush.jpg" class="w-50 pl-3 pb-3 float-right" %}
 _Liver Mush_ is a book about liver mush. Liver mush is a pork liver and cornmeal based food eaten mostly for breakfast and mostly in Western North Carolina. Liver mush is a hard sell because most people don't want to eat liver and most people question meat called mush. _Liver Mush_ is a collection of stories and poems based on the conflict of bad sounding things being good. Good seeming things being bad. Most things being unidentifiable. Memory being blurry and vague. Home being slathered on a biscuit. Home being a cat named Bambi. _Liver Mush_ is a book for people who feel bad after eating too much but keep on eating. It's a question that doesn't matter and an answer that does: Yes, I want some liver mush.
 
-<p class="lead align-right">“I enjoyed Liver Mush—a fun, funny, playful, original, food-heavy, Bambi-including book of poems and prose.”<br />—Tao Lin</p>
+<p class="lead">“I enjoyed Liver Mush—a fun, funny, playful, original, food-heavy, Bambi-including book of poems and prose.”<br />—Tao Lin</p>
 
 Available from [Back Patio Press](https://shop.backpatiopress.com/product/liver-mush-by-graham-irvin) and [Amazon](https://www.amazon.com/Liver-Mush-Graham-Irvin/dp/1733662811).
 
