@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Graham Irvin
+title: graham irvin
 email: grahamirvin90@gmail.com
 description: Graham Irvin is a writer from North Carolina. He lives in Philadelphia, PA. He runs the “Write about Everything” poetry workshop at Lot 49 Books.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -346,7 +346,7 @@ enable_google_analytics: false # enables google analytics
 enable_cronitor_analytics: false # enables cronitor RUM analytics
 enable_google_verification: false # enables google site verification
 enable_bing_verification: false # enables bing site verification
-enable_masonry: true # enables automatic project cards arrangement
+enable_masonry: false # enables automatic project cards arrangement
 enable_math: false # enables math typesetting (uses MathJax)
 enable_tooltips: false # enables automatic tooltip links generated for each section titles on pages and posts
 enable_darkmode: false # enables switching between light/dark modes

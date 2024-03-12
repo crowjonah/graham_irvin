@@ -18,6 +18,27 @@ $max-content-width: {{ site.max_width }};
   "font-awesome/regular"
 ;
 
+@font-face {
+	font-family: 'univers_next_proHvCn';
+	src: url("#{$font-path}/univers_next_pro_heavy_condensed-webfont.woff2") format("woff2"),
+			 url("#{$font-path}/univers_next_pro_heavy_condensed-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url("#{$font-path}/Roboto/Roboto-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar {
+	font-family: 'univers_next_proHvCn', sans-serif;
+}
+
 .social {
 	.contact-icons {
 		font-size: 1rem;
