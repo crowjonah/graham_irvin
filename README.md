@@ -4,23 +4,26 @@ To edit the `writing` and `books` pages, find them in the `_pages` folder, and c
 
 ## Update "writing" page
 
-Go to [_pages/writing.md](_pages/writing.md) and add a new entry for the new publication. Follow the format of the existing entries.
+Go to [\_pages/writing.md](_pages/writing.md) and add a new entry for the new publication. Follow the format of the existing entries.
 
 ### Section (genre) header
+
 ```
 ### Section header is preceded by hash marks
 ```
 
 ### Publication information
+
 ```
 - [Title](URL) [Publisher]
 ```
 
 ## Update "books" page
 
-Go to [_pages/books.md](_pages/books.md) and add a new entry for the new publication. Follow the format of the existing entries.
+Go to [\_pages/books.md](_pages/books.md) and add a new entry for the new publication. Follow the format of the existing entries.
 
 ### Book title
+
 ```
 ### Book title is preceded by hash marks
 ```
@@ -42,4 +45,3 @@ Book description
 
 Available from [Publisher](URL) and [Amazon](URL).
 ```
-

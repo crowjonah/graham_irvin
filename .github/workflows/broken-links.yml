@@ -17,6 +17,7 @@ on:
       - "!.github/workflows/deploy-image.yml"
       - "!.github/workflows/docker-slim.yml"
       - "!.github/workflows/prettier.yml"
+      - "!old/**"
   pull_request:
     branches:
       - master
@@ -33,6 +34,7 @@ on:
       - "!.github/workflows/deploy-image.yml"
       - "!.github/workflows/docker-slim.yml"
       - "!.github/workflows/prettier.yml"
+      - "!old/**"
 
 jobs:
   link-checker:
@@ -45,4 +47,4 @@ jobs:
         with:
           fail: true
           # removed md files that include liquid tags
-          args: --exclude-path README.md --exclude-path _pages/404.md --exclude-path _pages/blog.md --exclude-path _posts/2018-12-22-distill.md --verbose --no-progress './**/*.md' './**/*.html'
+          args: --exclude-path README.md --exclude-path _pages/404.md --exclude-path _pages/blog.md --exclude-path _pages/_blog.md --exclude-path _posts/2018-12-22-distill.md --verbose --no-progress './**/*.md' './**/*.html'
