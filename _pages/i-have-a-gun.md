@@ -17,6 +17,8 @@ Made of shame.
 
 Available from [Rejection Letters](https://rejectionletters.bigcartel.com/product/i-have-a-gun-by-graham-irvin) and [Amazon](https://www.amazon.com/I-Have-Gun-Graham-Irvin/dp/B0CW89GD6F/).
 
+<p class="text-center"><i class="fa-solid fa-gun"></i></p>
+
 ### Praise for _i have a gun_
 
 “The speaker of I HAVE A GUN may or may not have a gun, but they've certainly thought about them. Reading this book is like drinking a Yuengling at a party while talking to a hot history professor who also happens to know a lot about guns—it isn't boring. It's riveting. You're in on the joke and in on the not-joke all while a little erect. Graham Irvin psychoanalyzes gun ownership, gets meta with the function of literary imagination, and goes pow, pow, pow. A meditation on history, masculinity, and gun violence, I HAVE A GUN will have you laughing then feeling bad about it."
