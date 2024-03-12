@@ -24,7 +24,6 @@ $(document).ready(function () {
     });
   }
 
-
   let theme = localStorage.getItem("theme");
   if (theme == null || theme == "null") {
     const userPref = window.matchMedia;
@@ -32,5 +31,4 @@ $(document).ready(function () {
       theme = "dark";
     }
   }
-
 });

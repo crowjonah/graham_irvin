@@ -45,7 +45,6 @@ let setTheme = (theme) => {
         tables[i].classList.remove("table-dark");
       }
     }
-
   } else {
     document.documentElement.removeAttribute("data-theme");
   }
