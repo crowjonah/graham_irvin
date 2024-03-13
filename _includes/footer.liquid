@@ -13,7 +13,7 @@
       {% endif %}
     </div>
   </footer>
-{% else %}
+{% elsif site.footer_static %}
   <footer class="sticky-bottom mt-5" role="contentinfo">
     <div class="container">
       &copy; Copyright {{ site.time | date: '%Y' }}
@@ -28,4 +28,6 @@
       {% endif %}
     </div>
   </footer>
+{% else %}
+	<footer class="mt-5"></footer>
 {% endif %}
