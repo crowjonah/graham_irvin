@@ -93,15 +93,88 @@ $(document).ready(function () {
     });
 
     function createTargets(firstPosition) {
-      for (let i = 0; i < 10; i++) {
-        const target = $('<i class="fa-solid fa-bullseye target"></i>');
-        target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 32));
-        target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
-        firstPosition = null;
-        $("body").append(target);
-        targets.push(target);
+      if (score < 10) {
+        for (let i = 0; i < 10; i++) {
+          const target = $('<i class="fa-solid fa-bullseye target"></i>');
+          target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 32));
+          target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
+          firstPosition = null;
+          $("body").append(target);
+          targets.push(target);
+        }
+        scoreTotal += 10;
+      } else if (score < 20) {
+        for (let i = 0; i < 15; i++) {
+          const target = $('<i class="fa-solid fa-bullseye target"></i>');
+          target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 32));
+          target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
+          firstPosition = null;
+          $("body").append(target);
+          targets.push(target);
+          // cause this target to ping around the page, bouncing off the edges when it reaches them
+          const speed = Math.random() * 10 + 5;
+          const angle = Math.random() * Math.PI * 2;
+          const direction = {
+            x: Math.cos(angle),
+            y: Math.sin(angle),
+          };
+          const position = target.position();
+          const interval = setInterval(() => {
+            position.left += direction.x * speed;
+            position.top += direction.y * speed;
+            if (position.left < 0 || position.left > window.innerWidth - 32) {
+              direction.x *= -1;
+            }
+            if (position.top < 0 || position.top > $(document).height() - 32) {
+              direction.y *= -1;
+            }
+            target.css("left", position.left);
+            target.css("top", position.top);
+          }, 100);
+          target.data("interval", interval);
+        }
+        scoreTotal += 15;
+      } else if (score < 30) {
+        for (let i = 0; i < 50; i++) {
+          const target = $('<i class="fa-solid grahamer target"></i>');
+          target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 64));
+          target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
+          firstPosition = null;
+          $("body").append(target);
+          targets.push(target);
+          // cause this target to ping around the page, but moving more eratically, not just in straight lines, still bouncing off the edges when it reaches them
+          let speed = Math.random() * 10 + 5;
+          let angle = Math.random() * Math.PI * 2;
+          let direction = {
+            x: Math.cos(angle),
+            y: Math.sin(angle),
+          };
+          const position = target.position();
+          const interval = setInterval(() => {
+            // randomly change speed, angle, and direction 2% of the time
+            if (Math.random() < 0.1) {
+              speed = Math.random() * 10 + 5;
+              angle = Math.random() * Math.PI * 2;
+              direction = {
+                x: Math.cos(angle),
+                y: Math.sin(angle),
+              };
+            }
+            position.left += direction.x * speed;
+            position.top += direction.y * speed;
+            if (position.left < 0 || position.left > window.innerWidth - 64) {
+              direction.x *= -1;
+            }
+            if (position.top < 0 || position.top > $(document).height() - 32) {
+              direction.y *= -1;
+            }
+            target.css("left", position.left);
+            target.css("top", position.top);
+          }, 100);
+          target.data("interval", interval);
+        }
+        scoreTotal += 50;
       }
-      scoreTotal += 10;
     }
 
     function createScoreboard() {

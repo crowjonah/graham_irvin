@@ -75,6 +75,14 @@ h1, h2, h3, h4, h5, h6, .navbar {
 .target {
 	position: absolute;
 	color: var(--global-theme-color);
+	transition: all 0.3s;
+}
+
+.grahamer {
+	width: 32px;
+	height: 32px;
+	background: url("/favicon-32x32.png") no-repeat;
+	border-radius: 50%;
 }
 
 .scoreboard {
