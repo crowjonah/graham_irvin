@@ -2,8 +2,17 @@ $(document).ready(function () {
   // shooter
   const shooter = $(".shooter");
   if (shooter.length) {
+    let arMode = false;
     // set cursor: crosshair on body
     $("body").css("cursor", "crosshair");
+
+    shooter.on("mousedown", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log("clicked shooter");
+      arMode = !arMode;
+      $("body").toggleClass("ar");
+    });
     // I want to use css transform rotation to rotate the shooter to always point at the user's cursor
     // I need to know the center of the shooter to do this
     const shooterCenter = {
@@ -45,7 +54,53 @@ $(document).ready(function () {
       }
       if (!scoreboard) createScoreboard();
 
-      // I want to create a bullet
+      if (arMode) {
+        let currentCursor = cursor;
+        function updateCursor(event) {
+          currentCursor = {
+            x: event.pageX,
+            y: event.pageY,
+          };
+        }
+        $(document).on("mousemove", updateCursor);
+        // // createAndLaunchBullet every 200ms until mouseup
+        const interval = setInterval(() => {
+          // event.pageX and event.pageY are stale because the mouse has likely moved, so get the current mouse position
+          createAndLaunchBullet(currentCursor);
+        }, 100);
+        $(document).one("mouseup", function () {
+          clearInterval(interval);
+          $(document).off("mousemove", updateCursor);
+        });
+      } else {
+        // I want to create a bullet
+        createAndLaunchBullet(cursor);
+      }
+    });
+
+    function createTargets(firstPosition) {
+      for (let i = 0; i < 10; i++) {
+        const target = $('<i class="fa-solid fa-bullseye target"></i>');
+        target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 32));
+        target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
+        firstPosition = null;
+        $("body").append(target);
+        targets.push(target);
+      }
+      scoreTotal += 10;
+    }
+
+    function createScoreboard() {
+      scoreboard = $('<div class="scoreboard"></div>');
+      $("body").append(scoreboard);
+      updateScoreboard();
+    }
+
+    function updateScoreboard() {
+      scoreboard.text("Score: " + score + "/" + scoreTotal);
+    }
+
+    function createAndLaunchBullet(cursor) {
       const bullet = $('<div class="bullet"></div>');
       // I want to position the bullet at the center of the shooter
       bullet.css("left", shooterPosition.left + shooterCenter.x);
@@ -90,28 +145,6 @@ $(document).ready(function () {
           }
         }
       );
-    });
-
-    function createTargets(firstPosition) {
-      for (let i = 0; i < 10; i++) {
-        const target = $('<i class="fa-solid fa-bullseye target"></i>');
-        target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 32));
-        target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
-        firstPosition = null;
-        $("body").append(target);
-        targets.push(target);
-      }
-      scoreTotal += 10;
-    }
-
-    function createScoreboard() {
-      scoreboard = $('<div class="scoreboard"></div>');
-      $("body").append(scoreboard);
-      updateScoreboard();
-    }
-
-    function updateScoreboard() {
-      scoreboard.text("Score: " + score + "/" + scoreTotal);
     }
   }
 });

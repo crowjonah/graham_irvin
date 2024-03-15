@@ -63,6 +63,15 @@ h1, h2, h3, h4, h5, h6, .navbar {
 	background-color: #bfbfbf;
 }
 
+.ar .shooter {
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url("/assets/img/ar.png") no-repeat;
+	background-size: contain;
+	width: 32px;
+	height: 32px;
+}
+
 .target {
 	position: absolute;
 	color: var(--global-theme-color);
