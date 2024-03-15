@@ -3,15 +3,19 @@ $(document).ready(function () {
   const shooter = $(".shooter");
   if (shooter.length) {
     let arMode = false;
-    // set cursor: crosshair on body
     $("body").css("cursor", "crosshair");
 
-    // I want to use css transform rotation to rotate the shooter to always point at the user's cursor
+    // Use css transform rotation to rotate the shooter to always point at the user's cursor
     // I need to know the center of the shooter to do this
     let shooterCenter = {
       x: shooter.width() / 2,
       y: shooter.height() / 4,
     };
+    let targets = [];
+    let scoreboard;
+    let score = 0;
+    let scoreTotal = 0;
+
     shooter.on("mousedown pointerdown", function (event) {
       event.preventDefault();
       event.stopPropagation();
@@ -47,14 +51,8 @@ $(document).ready(function () {
         shooter.css("transform", "rotate(" + (angle + Math.PI) + "rad) scaleX(-1)");
       }
     });
-    // When the user clicks, I want to fire a bullet
-    // Bind to both mousedown and pointerdown
 
-    let targets = [];
-    let scoreboard;
-    let score = 0;
-    let scoreTotal = 0;
-
+    // When the user clicks, fire a bullet
     $(document).on("mousedown pointerdown", function (event) {
       const cursor = {
         x: event.pageX,
@@ -92,89 +90,164 @@ $(document).ready(function () {
       }
     });
 
+    function createMiniSpawn(position) {
+      for (let i = 0; i < 3; i++) {
+        const pointValue = 2;
+        scoreTotal += pointValue;
+        const target = $('<i class="fa-solid target grahamer mini" data-point-value="' + pointValue + '"></i>');
+        target.css("left", position.x - 32);
+        target.css("top", position.y - 32);
+        $("body").append(target);
+        targets.push(target);
+        makeItMoveLinearly(target);
+      }
+    }
+
+    function createMicroSpawn(position) {
+      for (let i = 0; i < 5; i++) {
+        const pointValue = 1;
+        scoreTotal += pointValue;
+        const target = $('<i class="fa-solid target grahamer micro" data-point-value="' + pointValue + '"></i>');
+        target.css("left", position.x - 16);
+        target.css("top", position.y - 16);
+        $("body").append(target);
+        targets.push(target);
+        makeItMoveErratically(target);
+      }
+    }
+
     function createTargets(firstPosition) {
       if (score < 10) {
+        // level 2
         for (let i = 0; i < 10; i++) {
-          const target = $('<i class="fa-solid fa-bullseye target"></i>');
+          const pointValue = 1;
+          scoreTotal += pointValue;
+          const target = $('<i class="fa-solid fa-bullseye target" data-point-value="' + pointValue + '"></i>');
           target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 32));
           target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
           firstPosition = null;
           $("body").append(target);
           targets.push(target);
         }
-        scoreTotal += 10;
       } else if (score < 20) {
+        // level 3
         for (let i = 0; i < 15; i++) {
-          const target = $('<i class="fa-solid fa-bullseye target"></i>');
-          target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 32));
-          target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
-          firstPosition = null;
+          const pointValue = 3;
+          scoreTotal += pointValue;
+          const target = $('<i class="fa-solid fa-bullseye target data-point-value="' + pointValue + '"></i>');
+          target.css("left", Math.random() * (window.innerWidth - 32));
+          target.css("top", Math.random() * ($(document).height() - 32));
           $("body").append(target);
           targets.push(target);
-          // cause this target to ping around the page, bouncing off the edges when it reaches them
-          const speed = Math.random() * 10 + 5;
-          const angle = Math.random() * Math.PI * 2;
-          const direction = {
-            x: Math.cos(angle),
-            y: Math.sin(angle),
-          };
-          const position = target.position();
-          const interval = setInterval(() => {
-            position.left += direction.x * speed;
-            position.top += direction.y * speed;
-            if (position.left < 0 || position.left > window.innerWidth - 32) {
-              direction.x *= -1;
-            }
-            if (position.top < 0 || position.top > $(document).height() - 32) {
-              direction.y *= -1;
-            }
-            target.css("left", position.left);
-            target.css("top", position.top);
-          }, 100);
-          target.data("interval", interval);
+          makeItMoveLinearly(target);
         }
-        scoreTotal += 15;
       } else if (score < 30) {
-        for (let i = 0; i < 50; i++) {
-          const target = $('<i class="fa-solid grahamer target"></i>');
-          target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 64));
-          target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
-          firstPosition = null;
+        // level 4
+        for (let i = 0; i < 15; i++) {
+          const pointValue = 5;
+          scoreTotal += pointValue;
+          const target = $('<i class="fa-solid grahamer target" data-point-value="' + pointValue + '"></i>');
+          target.css("left", Math.random() * (window.innerWidth - 64));
+          target.css("top", Math.random() * ($(document).height() - 32));
           $("body").append(target);
           targets.push(target);
-          // cause this target to ping around the page, but moving more eratically, not just in straight lines, still bouncing off the edges when it reaches them
-          let speed = Math.random() * 10 + 5;
-          let angle = Math.random() * Math.PI * 2;
-          let direction = {
+          makeItMoveErratically(target);
+        }
+      } else if (score < 45) {
+        // level 5
+        const pointValue = 10;
+        scoreTotal += pointValue;
+        const target = $('<i class="fa-solid grahamer target mega" data-point-value="' + pointValue + '" data-sensitivity="64"></i>');
+        target.css("left", Math.random() * (window.innerWidth - 64));
+        target.css("top", Math.random() * ($(document).height() - 32));
+        $("body").append(target);
+        targets.push(target);
+        // cause this target to ping around the page, but moving more eratically, not just in straight lines, still bouncing off the edges when it reaches them
+        let speed = Math.random() * 10 + 5;
+        let angle = Math.random() * Math.PI * 2;
+        let direction = {
+          x: Math.cos(angle),
+          y: Math.sin(angle),
+        };
+        const position = target.position();
+        const interval = setInterval(() => {
+          // randomly change speed, angle, and direction 2% of the time
+          if (Math.random() < 0.1) {
+            speed = Math.random() * 10 + 5;
+            angle = Math.random() * Math.PI * 2;
+            direction = {
+              x: Math.cos(angle),
+              y: Math.sin(angle),
+            };
+          }
+          position.left += direction.x * speed;
+          position.top += direction.y * speed;
+          if (position.left < 0 || position.left > window.innerWidth - 64) {
+            direction.x *= -1;
+          }
+          if (position.top < 0 || position.top > $(document).height() - 32) {
+            direction.y *= -1;
+          }
+          target.css("left", position.left);
+          target.css("top", position.top);
+        }, 100);
+        target.data("interval", interval);
+      }
+    }
+
+    function makeItMoveLinearly(target) {
+      const speed = Math.random() * 10 + 5;
+      const angle = Math.random() * Math.PI * 2;
+      const direction = {
+        x: Math.cos(angle),
+        y: Math.sin(angle),
+      };
+      const position = target.position();
+      const interval = setInterval(() => {
+        position.left += direction.x * speed;
+        position.top += direction.y * speed;
+        if (position.left < 0 || position.left > window.innerWidth - 32) {
+          direction.x *= -1;
+        }
+        if (position.top < 0 || position.top > $(document).height() - 32) {
+          direction.y *= -1;
+        }
+        target.css("left", position.left);
+        target.css("top", position.top);
+      }, 100);
+      target.data("interval", interval);
+    }
+
+    function makeItMoveErratically(target) {
+      let speed = Math.random() * 10 + 5;
+      let angle = Math.random() * Math.PI * 2;
+      let direction = {
+        x: Math.cos(angle),
+        y: Math.sin(angle),
+      };
+      const position = target.position();
+      const interval = setInterval(() => {
+        // randomly change speed, angle, and direction 2% of the time
+        if (Math.random() < 0.1) {
+          speed = Math.random() * 10 + 5;
+          angle = Math.random() * Math.PI * 2;
+          direction = {
             x: Math.cos(angle),
             y: Math.sin(angle),
           };
-          const position = target.position();
-          const interval = setInterval(() => {
-            // randomly change speed, angle, and direction 2% of the time
-            if (Math.random() < 0.1) {
-              speed = Math.random() * 10 + 5;
-              angle = Math.random() * Math.PI * 2;
-              direction = {
-                x: Math.cos(angle),
-                y: Math.sin(angle),
-              };
-            }
-            position.left += direction.x * speed;
-            position.top += direction.y * speed;
-            if (position.left < 0 || position.left > window.innerWidth - 64) {
-              direction.x *= -1;
-            }
-            if (position.top < 0 || position.top > $(document).height() - 32) {
-              direction.y *= -1;
-            }
-            target.css("left", position.left);
-            target.css("top", position.top);
-          }, 100);
-          target.data("interval", interval);
         }
-        scoreTotal += 50;
-      }
+        position.left += direction.x * speed;
+        position.top += direction.y * speed;
+        if (position.left < 0 || position.left > window.innerWidth - 64) {
+          direction.x *= -1;
+        }
+        if (position.top < 0 || position.top > $(document).height() - 32) {
+          direction.y *= -1;
+        }
+        target.css("left", position.left);
+        target.css("top", position.top);
+      }, 100);
+      target.data("interval", interval);
     }
 
     function createScoreboard() {
@@ -205,12 +278,14 @@ $(document).ready(function () {
           top: cursor.y,
         },
         distance,
+        "linear",
         function () {
           // I want to remove the bullet from the DOM
           bullet.remove();
           // I want to remove the target from the DOM
           for (let i = 0; i < targets.length; i++) {
             const target = targets[i];
+            const sensitivity = parseInt(target.attr("data-sensitivity")) || 20;
             const targetPosition = target.offset();
             const targetCenter = {
               x: target.width() / 2,
@@ -219,11 +294,19 @@ $(document).ready(function () {
             const distance = Math.sqrt(
               Math.pow(targetPosition.left + targetCenter.x - cursor.x, 2) + Math.pow(targetPosition.top + targetCenter.y - cursor.y, 2)
             );
-            if (distance < 20) {
+            if (distance < sensitivity) {
+              const pointValue = parseInt($(target).attr("data-point-value"));
+              const shouldSpawnMini = target.hasClass("mega");
+              const shouldSpawnMicro = target.hasClass("mini");
               target.remove();
               targets.splice(i, 1);
-              score++;
+              score += pointValue;
               updateScoreboard();
+              if (shouldSpawnMini) {
+                createMiniSpawn(cursor);
+              } else if (shouldSpawnMicro) {
+                createMicroSpawn(cursor);
+              }
               break;
             }
           }

@@ -82,7 +82,29 @@ h1, h2, h3, h4, h5, h6, .navbar {
 	width: 32px;
 	height: 32px;
 	background: url("/favicon-32x32.png") no-repeat;
+	background-size: cover;
 	border-radius: 50%;
+}
+
+.mega {
+	width: 128px;
+	height: 128px;
+	background: url("/assets/img/avi_prof_pic.jpg") no-repeat;
+	background-size: cover;
+}
+
+.mini {
+	width: 32px;
+	height: 32px;
+	background: url("/assets/img/avi_prof_pic.jpg") no-repeat;
+	background-size: cover;
+}
+
+.micro {
+	width: 16px;
+	height: 16px;
+	background: url("/assets/img/avi_prof_pic.jpg") no-repeat;
+	background-size: cover;
 }
 
 .scoreboard {
