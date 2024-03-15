@@ -17,7 +17,7 @@ Made of shame.
 
 Available from [Rejection Letters](https://rejectionletters.bigcartel.com/product/i-have-a-gun-by-graham-irvin) and [Amazon](https://www.amazon.com/I-Have-Gun-Graham-Irvin/dp/B0CW89GD6F/).
 
-<p class="text-center"><i class="fa-solid fa-gun"></i></p>
+<p class="text-center"><i class="fa-solid fa-gun shooter"></i></p>
 
 ### Praise for _i have a gun_
 
