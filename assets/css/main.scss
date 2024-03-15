@@ -72,6 +72,16 @@ h1, h2, h3, h4, h5, h6, .navbar {
 	height: 32px;
 }
 
+.shotgun .shooter {
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url("/assets/img/shotgun.png") no-repeat;
+	background-size: contain;
+	width: 32px;
+	height: 32px;
+
+}
+
 .target {
 	position: absolute;
 	color: var(--global-theme-color);

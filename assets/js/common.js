@@ -1,8 +1,9 @@
 $(document).ready(function () {
   // shooter
   const shooter = $(".shooter");
+  const guns = ["pistol", "ar", "shotgun"];
   if (shooter.length) {
-    let arMode = false;
+    let gun = 0;
     $("body").css("cursor", "crosshair");
 
     // Use css transform rotation to rotate the shooter to always point at the user's cursor
@@ -19,10 +20,12 @@ $(document).ready(function () {
     shooter.on("mousedown pointerdown", function (event) {
       event.preventDefault();
       event.stopPropagation();
-      console.log("clicked shooter");
-      arMode = !arMode;
-      $("body").toggleClass("ar");
-      shooterCenter = arMode
+      gun = (gun + 1) % guns.length;
+      guns.forEach((g, i) => {
+        if (i === gun) $("body").addClass(g);
+        else $("body").removeClass(g);
+      });
+      shooterCenter = ["ar", "shotgun"].includes(guns[gun])
         ? {
             x: shooter.width() / 2,
             y: shooter.height() / 2.1,
@@ -66,7 +69,7 @@ $(document).ready(function () {
       }
       if (!scoreboard) createScoreboard();
 
-      if (arMode) {
+      if (guns[gun] === "ar") {
         let currentCursor = cursor;
         function updateCursor(event) {
           currentCursor = {
@@ -75,15 +78,20 @@ $(document).ready(function () {
           };
         }
         $(document).on("mousemove pointermove", updateCursor);
-        // // createAndLaunchBullet every 200ms until mouseup
         const interval = setInterval(() => {
-          // event.pageX and event.pageY are stale because the mouse has likely moved, so get the current mouse position
           createAndLaunchBullet(currentCursor);
         }, 100);
         $(document).one("mouseup pointerup", function () {
           clearInterval(interval);
           $(document).off("mousemove pointermove", updateCursor);
         });
+      } else if (guns[gun] === "shotgun") {
+        for (let i = 0; i < 5; i++) {
+          createAndLaunchBullet({
+            x: cursor.x + Math.random() * 100 - 50,
+            y: cursor.y + Math.random() * 100 - 50,
+          });
+        }
       } else {
         // I want to create a bullet
         createAndLaunchBullet(cursor);
