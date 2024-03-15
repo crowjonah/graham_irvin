@@ -6,23 +6,33 @@ $(document).ready(function () {
     // set cursor: crosshair on body
     $("body").css("cursor", "crosshair");
 
+    // I want to use css transform rotation to rotate the shooter to always point at the user's cursor
+    // I need to know the center of the shooter to do this
+    let shooterCenter = {
+      x: shooter.width() / 2,
+      y: shooter.height() / 4,
+    };
     shooter.on("mousedown pointerdown", function (event) {
       event.preventDefault();
       event.stopPropagation();
       console.log("clicked shooter");
       arMode = !arMode;
       $("body").toggleClass("ar");
+      shooterCenter = arMode
+        ? {
+            x: shooter.width() / 2,
+            y: shooter.height() / 2.1,
+          }
+        : {
+            x: shooter.width() / 2,
+            y: shooter.height() / 4,
+          };
     });
-    // I want to use css transform rotation to rotate the shooter to always point at the user's cursor
-    // I need to know the center of the shooter to do this
-    const shooterCenter = {
-      x: shooter.width() / 2,
-      y: shooter.height() / 4,
-    };
+
     // I also need to know the position of the shooter on the page
     // I need to know the angle between the shooter and the cursor
     // I need to know the position of the cursor
-    $(document).on("pointerdown", function (event) {
+    $(document).on("pointerdown mousemove", function (event) {
       const cursor = {
         x: event.pageX,
         y: event.pageY,
