@@ -6,7 +6,7 @@ $(document).ready(function () {
     // set cursor: crosshair on body
     $("body").css("cursor", "crosshair");
 
-    shooter.on("mousedown", function (event) {
+    shooter.on("mousedown pointerdown", function (event) {
       event.preventDefault();
       event.stopPropagation();
       console.log("clicked shooter");
@@ -20,16 +20,15 @@ $(document).ready(function () {
       y: shooter.height() / 4,
     };
     // I also need to know the position of the shooter on the page
-    const shooterPosition = shooter.offset();
     // I need to know the angle between the shooter and the cursor
     // I need to know the position of the cursor
-    $(document).mousemove(function (event) {
+    $(document).on("pointerdown", function (event) {
       const cursor = {
         x: event.pageX,
         y: event.pageY,
       };
       // I need to know the angle between the shooter and the cursor
-      const angle = Math.atan2(cursor.y - shooterPosition.top - shooterCenter.y, cursor.x - shooterPosition.left - shooterCenter.x);
+      const angle = Math.atan2(cursor.y - shooter.offset().top - shooterCenter.y, cursor.x - shooter.offset().left - shooterCenter.x);
       // I want to rotate the shooter to always point at the user's cursor
       shooter.css("transform", "rotate(" + angle + "rad)");
     });
@@ -41,7 +40,7 @@ $(document).ready(function () {
     let score = 0;
     let scoreTotal = 0;
 
-    $(document).on("mousedown", function (event) {
+    $(document).on("mousedown pointerdown", function (event) {
       const cursor = {
         x: event.pageX,
         y: event.pageY,
@@ -62,15 +61,15 @@ $(document).ready(function () {
             y: event.pageY,
           };
         }
-        $(document).on("mousemove", updateCursor);
+        $(document).on("mousemove pointermove", updateCursor);
         // // createAndLaunchBullet every 200ms until mouseup
         const interval = setInterval(() => {
           // event.pageX and event.pageY are stale because the mouse has likely moved, so get the current mouse position
           createAndLaunchBullet(currentCursor);
         }, 100);
-        $(document).one("mouseup", function () {
+        $(document).one("mouseup pointerup", function () {
           clearInterval(interval);
-          $(document).off("mousemove", updateCursor);
+          $(document).off("mousemove pointermove", updateCursor);
         });
       } else {
         // I want to create a bullet
@@ -103,14 +102,14 @@ $(document).ready(function () {
     function createAndLaunchBullet(cursor) {
       const bullet = $('<div class="bullet"></div>');
       // I want to position the bullet at the center of the shooter
-      bullet.css("left", shooterPosition.left + shooterCenter.x);
-      bullet.css("top", shooterPosition.top + shooterCenter.y);
+      bullet.css("left", shooter.offset().left + shooterCenter.x);
+      bullet.css("top", shooter.offset().top + shooterCenter.y);
       // I want to append the bullet to the body
       $("body").append(bullet);
       // I want to animate the bullet to the cursor
       // Calculate the duration based on the distance needed to travel
       const distance = Math.sqrt(
-        Math.pow(cursor.x - (shooterPosition.left + shooterCenter.x), 2) + Math.pow(cursor.y - (shooterPosition.top + shooterCenter.y), 2)
+        Math.pow(cursor.x - (shooter.offset().left + shooterCenter.x), 2) + Math.pow(cursor.y - (shooter.offset().top + shooterCenter.y), 2)
       );
       bullet.animate(
         {
