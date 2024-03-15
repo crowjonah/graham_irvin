@@ -30,12 +30,12 @@ $(document).ready(function () {
       // I need to know the angle between the shooter and the cursor
       const angle = Math.atan2(cursor.y - shooter.offset().top - shooterCenter.y, cursor.x - shooter.offset().left - shooterCenter.x);
       // I want to rotate the shooter to always point at the user's cursor
-			// If the cursor position is to the left of the shooter, I want to flip the shooter
-			if (cursor.x > shooter.offset().left + shooterCenter.x) {
-				shooter.css("transform", "rotate(" + angle + "rad)");
-			} else {
-				shooter.css("transform", "rotate(" + (angle + Math.PI) + "rad) scaleX(-1)");
-			}
+      // If the cursor position is to the left of the shooter, I want to flip the shooter
+      if (cursor.x > shooter.offset().left + shooterCenter.x) {
+        shooter.css("transform", "rotate(" + angle + "rad)");
+      } else {
+        shooter.css("transform", "rotate(" + (angle + Math.PI) + "rad) scaleX(-1)");
+      }
     });
     // When the user clicks, I want to fire a bullet
     // Bind to both mousedown and pointerdown
