@@ -126,10 +126,12 @@ $(document).ready(function () {
 
     function createTargets(firstPosition) {
       if (score < 10) {
-        // level 2
-        for (let i = 0; i < 10; i++) {
+        // level 1
+        const possiblePoints = 10;
+        console.log("creating level 1", score, scoreTotal, possiblePoints);
+        scoreTotal += possiblePoints;
+        for (let i = 0; i < possiblePoints; i++) {
           const pointValue = 1;
-          scoreTotal += pointValue;
           const target = $('<i class="fa-solid fa-bullseye target" data-point-value="' + pointValue + '"></i>');
           target.css("left", firstPosition ? firstPosition.left : Math.random() * (window.innerWidth - 32));
           target.css("top", firstPosition ? firstPosition.top : Math.random() * ($(document).height() - 32));
@@ -138,11 +140,14 @@ $(document).ready(function () {
           targets.push(target);
         }
       } else if (score < 20) {
-        // level 3
-        for (let i = 0; i < 15; i++) {
-          const pointValue = 3;
-          scoreTotal += pointValue;
-          const target = $('<i class="fa-solid fa-bullseye target data-point-value="' + pointValue + '"></i>');
+        // level 2
+        const pointValue = 3;
+        const targetCount = 15;
+        const possiblePoints = pointValue * targetCount;
+        console.log("creating level 2", score, scoreTotal, possiblePoints);
+        scoreTotal += possiblePoints;
+        for (let i = 0; i < targetCount; i++) {
+          const target = $('<i class="fa-solid fa-bullseye target" data-point-value="' + pointValue + '"></i>');
           target.css("left", Math.random() * (window.innerWidth - 32));
           target.css("top", Math.random() * ($(document).height() - 32));
           $("body").append(target);
@@ -150,10 +155,13 @@ $(document).ready(function () {
           makeItMoveLinearly(target);
         }
       } else if (score < 30) {
-        // level 4
+        // level 3
+        const pointValue = 5;
+        const targetCount = 15;
+        const possiblePoints = pointValue * targetCount;
+        console.log("creating level 3", score, scoreTotal, possiblePoints);
+        scoreTotal += possiblePoints;
         for (let i = 0; i < 15; i++) {
-          const pointValue = 5;
-          scoreTotal += pointValue;
           const target = $('<i class="fa-solid grahamer target" data-point-value="' + pointValue + '"></i>');
           target.css("left", Math.random() * (window.innerWidth - 64));
           target.css("top", Math.random() * ($(document).height() - 32));
@@ -162,8 +170,9 @@ $(document).ready(function () {
           makeItMoveErratically(target);
         }
       } else if (score < 45) {
-        // level 5
+        // level 4
         const pointValue = 10;
+        console.log("creating level 4", score, scoreTotal, pointValue);
         scoreTotal += pointValue;
         const target = $('<i class="fa-solid grahamer target mega" data-point-value="' + pointValue + '" data-sensitivity="64"></i>');
         target.css("left", Math.random() * (window.innerWidth - 64));
@@ -179,7 +188,7 @@ $(document).ready(function () {
         };
         const position = target.position();
         const interval = setInterval(() => {
-          // randomly change speed, angle, and direction 2% of the time
+          // randomly change speed, angle, and direction 10% of the time
           if (Math.random() < 0.1) {
             speed = Math.random() * 10 + 5;
             angle = Math.random() * Math.PI * 2;
@@ -303,7 +312,8 @@ $(document).ready(function () {
               Math.pow(targetPosition.left + targetCenter.x - cursor.x, 2) + Math.pow(targetPosition.top + targetCenter.y - cursor.y, 2)
             );
             if (distance < sensitivity) {
-              const pointValue = parseInt($(target).attr("data-point-value"));
+              const pointValue = parseInt(target.attr("data-point-value")) || 1;
+              console.log("hit target with point value", pointValue);
               const shouldSpawnMini = target.hasClass("mega");
               const shouldSpawnMicro = target.hasClass("mini");
               target.remove();
