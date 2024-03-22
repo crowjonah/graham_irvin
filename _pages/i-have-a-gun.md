@@ -4,6 +4,7 @@ permalink: /i-have-a-gun/
 title: i have a gun
 nav: true
 nav_order: 2
+og_image: /assets/img/ihaveagun.jpg
 ---
 
 {% include figure.liquid loading="eager" path="assets/img/ihaveagun.jpg" class="w-50 pl-3 pb-3 float-right" %}

@@ -4,6 +4,7 @@ permalink: /liver-mush/
 title: liver mush
 nav: true
 nav_order: 3
+og_image: /assets/img/livermush.jpg
 ---
 
 {% include figure.liquid loading="eager" path="assets/img/livermush.jpg" class="w-50 pl-3 pb-3 float-right" %}
